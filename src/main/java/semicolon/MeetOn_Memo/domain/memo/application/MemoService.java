@@ -35,4 +35,10 @@ public class MemoService {
         Memo save = memoRepository.save(memo);
         return save.getId();
     }
+
+    public MemoDetailResponseDto getMemoDetail(Long memoId) {
+        Memo memo = memoRepository.findById(memoId)
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMO_NOT_FOUND));
+        return MemoDetailResponseDto.memoDetailResponseDto(memo);
+    }
 }
