@@ -3,6 +3,8 @@ package semicolon.MeetOn_Memo.domain.memo.api;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +36,19 @@ public class MemoController {
      * @param memoId
      * @return
      */
-    @GetMapping
+    @GetMapping("/info")
     public ResponseEntity<MemoDetailResponseDto> memoDetail(@RequestParam Long memoId) {
         return ResponseEntity.ok(memoService.getMemoDetail(memoId));
+    }
+
+    /**
+     * 메모 페이지 리스트
+     * @param pageable
+     * @param request
+     * @return
+     */
+    @GetMapping
+    public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
+        return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
     }
 }

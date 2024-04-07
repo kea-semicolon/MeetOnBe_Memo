@@ -1,5 +1,6 @@
 package semicolon.MeetOn_Memo.domain.memo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class MemoDto {
     @NoArgsConstructor
     public static class MemoDetailResponseDto {
         private String content;
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime createdDate;
 
         @Builder
@@ -38,6 +40,31 @@ public class MemoDto {
                     .content(memo.getContent())
                     .createdDate(memo.getCreatedAt())
                     .build();
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class MemoPageResponseDto {
+        private Long memoId;
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+        private LocalDateTime createdDate;
+
+        @Builder
+        public MemoPageResponseDto(Long memoId, LocalDateTime createdDate) {
+            this.memoId = memoId;
+            this.createdDate = createdDate;
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class MemoResponseDto<T> {
+        private T memoList;
+
+        @Builder
+        public MemoResponseDto(T memoList) {
+            this.memoList = memoList;
         }
     }
 }
