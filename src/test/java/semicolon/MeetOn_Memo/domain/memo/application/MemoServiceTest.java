@@ -116,6 +116,21 @@ public class MemoServiceTest {
         assertThat(memo.getContent()).isEqualTo(updateRequestDto.getContent());
     }
 
+    @Test
+    void 메모_삭제() {
+        //given
+        Long memoId = 1L;
+        Memo memo = new Memo(1L, "test", 1L);
+
+        //when
+        when(memoRepository.findById(memoId)).thenReturn(Optional.of(memo));
+        memoService.deleteMemo(memoId);
+
+        //then
+        verify(memoRepository).findById(memoId);
+        verify(memoRepository).delete(memo);
+    }
+
     private void createSetCookie(String name, String value) {
         MockCookie mockCookie = new MockCookie(name, value);
         mockCookie.setPath("/");

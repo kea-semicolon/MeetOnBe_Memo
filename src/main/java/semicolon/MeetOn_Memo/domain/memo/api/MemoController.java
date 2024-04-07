@@ -52,9 +52,21 @@ public class MemoController {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
     }
 
+    /**
+     * 메모 수정
+     * @param memoId
+     * @param memoUpdateRequestDto
+     * @return
+     */
     @PutMapping
     public ResponseEntity<String> memoUpdate(@RequestParam Long memoId, @RequestBody MemoUpdateRequestDto memoUpdateRequestDto) {
         memoService.updateMemo(memoId, memoUpdateRequestDto);
+        return ResponseEntity.ok("success");
+    }
+
+    @DeleteMapping
+    public ResponseEntity<String> memoDelete(@RequestParam Long memoId) {
+        memoService.deleteMemo(memoId);
         return ResponseEntity.ok("success");
     }
 }

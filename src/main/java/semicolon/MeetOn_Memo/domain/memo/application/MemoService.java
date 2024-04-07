@@ -63,6 +63,12 @@ public class MemoService {
         memo.update(memoUpdateRequestDto);
     }
 
+    @Transactional
+    public void deleteMemo(Long memoId) {
+        Memo memo = findMemo(memoId);
+        memoRepository.delete(memo);
+    }
+
     private Memo findMemo(Long memoId) {
         return memoRepository.findById(memoId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMO_NOT_FOUND));
