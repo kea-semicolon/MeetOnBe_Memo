@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import semicolon.MeetOn_Memo.domain.BaseTimeEntity;
+import semicolon.MeetOn_Memo.domain.memo.dto.MemoDto;
+
+import static semicolon.MeetOn_Memo.domain.memo.dto.MemoDto.*;
 
 @Getter
 @Entity
@@ -26,5 +29,9 @@ public class Memo extends BaseTimeEntity {
         this.id = id;
         this.content = content;
         this.memberId = memberId;
+    }
+
+    public void update(MemoUpdateRequestDto updateRequestDto) {
+        this.content = updateRequestDto.getContent();
     }
 }

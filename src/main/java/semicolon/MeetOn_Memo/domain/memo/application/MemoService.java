@@ -42,8 +42,7 @@ public class MemoService {
     }
 
     public MemoDetailResponseDto getMemoDetail(Long memoId) {
-        Memo memo = memoRepository.findById(memoId)
-                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMO_NOT_FOUND));
+        Memo memo = findMemo(memoId);
         return MemoDetailResponseDto.memoDetailResponseDto(memo);
     }
 
@@ -56,5 +55,16 @@ public class MemoService {
                 ).toList();
 
         return new PageImpl<>(result, pageable, allByMemberId.getTotalPages());
+    }
+
+    @Transactional
+    public void updateMemo(Long memoId, MemoUpdateRequestDto memoUpdateRequestDto) {
+        Memo memo = findMemo(memoId);
+        memo.update(memoUpdateRequestDto);
+    }
+
+    private Memo findMemo(Long memoId) {
+        return memoRepository.findById(memoId)
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMO_NOT_FOUND));
     }
 }

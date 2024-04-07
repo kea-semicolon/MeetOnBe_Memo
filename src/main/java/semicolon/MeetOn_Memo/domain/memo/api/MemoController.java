@@ -51,4 +51,10 @@ public class MemoController {
     public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
     }
+
+    @PutMapping
+    public ResponseEntity<String> memoUpdate(@RequestParam Long memoId, @RequestBody MemoUpdateRequestDto memoUpdateRequestDto) {
+        memoService.updateMemo(memoId, memoUpdateRequestDto);
+        return ResponseEntity.ok("success");
+    }
 }

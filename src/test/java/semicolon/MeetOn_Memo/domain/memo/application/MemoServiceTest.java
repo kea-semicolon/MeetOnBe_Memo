@@ -103,6 +103,19 @@ public class MemoServiceTest {
         assertThat(memoPageList.getContent().size()).isEqualTo(memoPageResponseDtos.size());
     }
 
+    @Test
+    void 메모_수정() {
+        //given
+        Memo memo = new Memo(1L, "test", 1L);
+        MemoUpdateRequestDto updateRequestDto = new MemoUpdateRequestDto("update-test");
+
+        //when
+        when(memoRepository.findById(1L)).thenReturn(Optional.of(memo));
+        memoService.updateMemo(1L, updateRequestDto);
+
+        assertThat(memo.getContent()).isEqualTo(updateRequestDto.getContent());
+    }
+
     private void createSetCookie(String name, String value) {
         MockCookie mockCookie = new MockCookie(name, value);
         mockCookie.setPath("/");

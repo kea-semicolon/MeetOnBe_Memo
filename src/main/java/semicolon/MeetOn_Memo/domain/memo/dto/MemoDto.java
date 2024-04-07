@@ -67,4 +67,15 @@ public class MemoDto {
             this.memoList = memoList;
         }
     }
+
+    @Getter
+    @NoArgsConstructor
+    public static class MemoUpdateRequestDto {
+        private String content;
+
+        @Builder
+        public MemoUpdateRequestDto(String content) {
+            this.content = content;
+        }
+    }
 }
