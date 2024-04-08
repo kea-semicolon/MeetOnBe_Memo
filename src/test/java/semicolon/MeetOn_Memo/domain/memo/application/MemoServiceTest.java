@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.support.ManagedList;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,8 @@ import semicolon.MeetOn_Memo.domain.memo.dao.MemoRepository;
 import semicolon.MeetOn_Memo.domain.memo.domain.Memo;
 import semicolon.MeetOn_Memo.domain.memo.dto.MemoDto;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
