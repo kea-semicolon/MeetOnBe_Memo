@@ -1,5 +1,6 @@
 package semicolon.MeetOn_Memo.domain.memo.api;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,7 @@ public class MemoController {
      * @param request
      * @return
      */
+    @Operation(description = "메모 작성")
     @PostMapping
     public ResponseEntity<String> saveMemo(@RequestBody MemoSaveRequestDto memoSaveRequestDto, HttpServletRequest request) {
         Long saveId = memoService.saveMemo(memoSaveRequestDto, request);
@@ -36,6 +38,7 @@ public class MemoController {
      * @param memoId
      * @return
      */
+    @Operation(description = "메모 확인")
     @GetMapping("/info")
     public ResponseEntity<MemoDetailResponseDto> memoDetail(@RequestParam Long memoId) {
         return ResponseEntity.ok(memoService.getMemoDetail(memoId));
@@ -47,6 +50,7 @@ public class MemoController {
      * @param request
      * @return
      */
+    @Operation(description = "메모 리스트(페이징)")
     @GetMapping
     public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
@@ -58,12 +62,14 @@ public class MemoController {
      * @param memoUpdateRequestDto
      * @return
      */
+    @Operation(description = "메모 수정")
     @PutMapping
     public ResponseEntity<String> memoUpdate(@RequestParam Long memoId, @RequestBody MemoUpdateRequestDto memoUpdateRequestDto) {
         memoService.updateMemo(memoId, memoUpdateRequestDto);
         return ResponseEntity.ok("success");
     }
 
+    @Operation(description = "메모 삭제")
     @DeleteMapping
     public ResponseEntity<String> memoDelete(@RequestParam Long memoId) {
         memoService.deleteMemo(memoId);
