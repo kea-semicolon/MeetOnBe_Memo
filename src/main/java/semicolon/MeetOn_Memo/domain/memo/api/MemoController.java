@@ -26,7 +26,7 @@ public class MemoController {
      * @param request
      * @return
      */
-    @Operation(description = "메모 작성")
+    @Operation(summary = "메모 작성", description = "메모 작성, MemoSaveRequestDto")
     @PostMapping
     public ResponseEntity<String> saveMemo(@RequestBody MemoSaveRequestDto memoSaveRequestDto, HttpServletRequest request) {
         Long saveId = memoService.saveMemo(memoSaveRequestDto, request);
@@ -38,7 +38,7 @@ public class MemoController {
      * @param memoId
      * @return
      */
-    @Operation(description = "메모 확인")
+    @Operation(summary = "메모 확인", description = "메모 확인")
     @GetMapping("/info")
     public ResponseEntity<MemoDetailResponseDto> memoDetail(@RequestParam Long memoId) {
         return ResponseEntity.ok(memoService.getMemoDetail(memoId));
@@ -50,7 +50,7 @@ public class MemoController {
      * @param request
      * @return
      */
-    @Operation(description = "메모 리스트(페이징)")
+    @Operation(summary = "메모 리스트", description = "메모 리스트(페이징)")
     @GetMapping
     public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
@@ -62,14 +62,14 @@ public class MemoController {
      * @param memoUpdateRequestDto
      * @return
      */
-    @Operation(description = "메모 수정")
+    @Operation(summary = "메모 수정", description = "메모 수정 + MemoUpdateRequestDto")
     @PutMapping
     public ResponseEntity<String> memoUpdate(@RequestParam Long memoId, @RequestBody MemoUpdateRequestDto memoUpdateRequestDto) {
         memoService.updateMemo(memoId, memoUpdateRequestDto);
         return ResponseEntity.ok("success");
     }
 
-    @Operation(description = "메모 삭제")
+    @Operation(summary = "메모 삭제", description = "메모 삭제")
     @DeleteMapping
     public ResponseEntity<String> memoDelete(@RequestParam Long memoId) {
         memoService.deleteMemo(memoId);
