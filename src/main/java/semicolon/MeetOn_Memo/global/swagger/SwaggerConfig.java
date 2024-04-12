@@ -16,7 +16,7 @@ import java.util.List;
 
 @Slf4j
 @OpenAPIDefinition(info = @Info(
-        title = "MeetOn Reply API",
+        title = "MeetOn Memo API",
         description = "MeetOn : API 명세서",
         version = "v1.0.0"))
 @Configuration
@@ -47,7 +47,7 @@ public class SwaggerConfig {
                         new SecurityScheme().type(SecurityScheme.Type.HTTP).scheme("bearer").bearerFormat("JWT")))
                 .addSecurityItem(new SecurityRequirement().addList("Bearer"))
                 .info(new io.swagger.v3.oas.models.info.Info().title("KEA Project-SemiColon")
-                        .description("Reply 관련 API")
+                        .description("Memo 관련 API")
                         .version("v0 0.1"));
     }
 }
