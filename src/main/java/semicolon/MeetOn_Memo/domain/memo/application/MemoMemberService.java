@@ -17,7 +17,7 @@ public class MemoMemberService {
     private final WebClient webClient;
 
     public Boolean memberExist(Long memberId, String accessToken) {
-        String uri = UriComponentsBuilder.fromUriString("http://localhost:8000/member/find")
+        String uri = UriComponentsBuilder.fromUriString("http://172.16.212.76:8000/member/find")
                 .queryParam("memberId", memberId)
                 .toUriString();
 
