@@ -50,7 +50,7 @@ public class MemoController {
      * @param request
      * @return
      */
-    @Operation(summary = "메모 리스트", description = "메모 리스트(페이징)")
+    @Operation(summary = "메모 리스트", description = "메모 리스트 (페이징)")
     @GetMapping
     public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
