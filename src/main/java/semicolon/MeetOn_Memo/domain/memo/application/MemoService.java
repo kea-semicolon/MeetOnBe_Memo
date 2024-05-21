@@ -51,7 +51,10 @@ public class MemoService {
         Page<Memo> allByMemberId = memoRepository.findAllByMemberId(memberId, pageable);
         List<MemoPageResponseDto> result = allByMemberId.getContent().stream()
                 .map(memo ->
-                        MemoPageResponseDto.builder().memoId(memo.getId()).createdDate(memo.getCreatedAt()).build()
+                        MemoPageResponseDto
+                                .builder()
+                                .memoId(memo.getId()).createdDate(memo.getCreatedAt()).content(memo.getContent())
+                                .build()
                 ).toList();
 
         return new PageImpl<>(result, pageable, allByMemberId.getTotalPages());

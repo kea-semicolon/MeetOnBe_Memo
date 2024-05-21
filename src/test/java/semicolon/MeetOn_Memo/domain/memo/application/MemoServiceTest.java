@@ -94,8 +94,8 @@ public class MemoServiceTest {
                 new Memo(2L, "test2", 1L)
         );
         List<MemoPageResponseDto> memoPageResponseDtos = List.of(
-                new MemoPageResponseDto(1L, null),
-                new MemoPageResponseDto(2L, null)
+                new MemoPageResponseDto(1L, null, null),
+                new MemoPageResponseDto(2L, null, null)
         );
         Page<Memo> memoPage = new PageImpl<>(memos, pageable, memos.size());
 

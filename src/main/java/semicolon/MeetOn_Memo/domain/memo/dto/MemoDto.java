@@ -49,11 +49,13 @@ public class MemoDto {
         private Long memoId;
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime createdDate;
+        private String content;
 
         @Builder
-        public MemoPageResponseDto(Long memoId, LocalDateTime createdDate) {
+        public MemoPageResponseDto(Long memoId, LocalDateTime createdDate, String content) {
             this.memoId = memoId;
             this.createdDate = createdDate;
+            this.content = content;
         }
     }
 
