@@ -11,6 +11,8 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class ClientConfig {
 
+    @Value("${app.gateway.url}")
+    private String gateway;
 
     @Bean
     public RestTemplate restTemplate() {
@@ -21,7 +23,7 @@ public class ClientConfig {
     public WebClient webClient() {
         return WebClient
                 .builder()
-                .baseUrl("http://172.16.212.76:8000")
+                .baseUrl(gateway)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }

@@ -2,6 +2,7 @@ package semicolon.MeetOn_Memo.domain.memo.application;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,9 +16,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class MemoMemberService {
 
     private final WebClient webClient;
+    @Value("${app.gateway.url}")
+    private String gateway;
 
     public Boolean memberExist(Long memberId, String accessToken) {
-        String uri = UriComponentsBuilder.fromUriString("http://172.16.212.76:8000/member/find")
+        String uri = UriComponentsBuilder.fromUriString(gateway + "/member/find")
                 .queryParam("memberId", memberId)
                 .toUriString();
 
