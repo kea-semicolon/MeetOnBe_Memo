@@ -67,7 +67,7 @@ public class MemoController {
      */
     @Operation(summary = "메모 리스트", description = "메모 리스트(페이징)")
     @GetMapping
-    public ResponseEntity<List<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
+    public ResponseEntity<MemoResponseDtoList<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
     }
 

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import semicolon.MeetOn_Memo.domain.memo.domain.Memo;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MemoDto {
 
@@ -66,6 +67,17 @@ public class MemoDto {
 
         @Builder
         public MemoResponseDto(T memoList) {
+            this.memoList = memoList;
+        }
+    }
+
+    @Getter
+    @NoArgsConstructor
+    public static class MemoResponseDtoList<T> {
+        private List<T> memoList;
+
+        @Builder
+        public MemoResponseDtoList(List<T> memoList) {
             this.memoList = memoList;
         }
     }
