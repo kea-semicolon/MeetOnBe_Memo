@@ -12,6 +12,15 @@ spring:
     username: ${db 사용자}
     password: ${db 암호}
 
+  cloud:
+    kubernetes:
+      discovery:
+        enabled: true
+      config:
+        enabled: true
+      secrets:
+        enabled: true
+
   kafka:
     consumer:
       bootstrap-servers: ${카프카 서버 주소}:9092
