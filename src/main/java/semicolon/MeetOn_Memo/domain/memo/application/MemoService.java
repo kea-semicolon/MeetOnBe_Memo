@@ -46,7 +46,7 @@ public class MemoService {
         return MemoDetailResponseDto.memoDetailResponseDto(memo);
     }
 
-    public Page<MemoPageResponseDto> getMemoPageList(Pageable pageable, HttpServletRequest request) {
+    public List<MemoPageResponseDto> getMemoPageList(Pageable pageable, HttpServletRequest request) {
         Long memberId = Long.valueOf(cookieUtil.getCookieValue("memberId", request));
         Page<Memo> allByMemberId = memoRepository.findAllByMemberId(memberId, pageable);
         List<MemoPageResponseDto> result = allByMemberId.getContent().stream()
@@ -57,7 +57,8 @@ public class MemoService {
                                 .build()
                 ).toList();
 
-        return new PageImpl<>(result, pageable, allByMemberId.getTotalPages());
+        //return new PageImpl<>(result, pageable, allByMemberId.getTotalPages());
+        return result;
     }
 
     @Transactional

@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import semicolon.MeetOn_Memo.domain.memo.application.MemoService;
+
+import java.util.List;
+
 import static semicolon.MeetOn_Memo.domain.memo.dto.MemoDto.*;
 
 @Slf4j
@@ -44,15 +47,27 @@ public class MemoController {
         return ResponseEntity.ok(memoService.getMemoDetail(memoId));
     }
 
+//    /**
+//     * 메모 페이지 리스트
+//     * @param pageable
+//     * @param request
+//     * @return
+//     */
+//    @Operation(summary = "메모 리스트", description = "메모 리스트(페이징)")
+//    @GetMapping
+//    public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
+//        return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
+//    }
+
     /**
-     * 메모 페이지 리스트
+     * 메모 리스트
      * @param pageable
      * @param request
      * @return
      */
     @Operation(summary = "메모 리스트", description = "메모 리스트(페이징)")
     @GetMapping
-    public ResponseEntity<Page<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
+    public ResponseEntity<List<MemoPageResponseDto>> memoList(Pageable pageable, HttpServletRequest request) {
         return ResponseEntity.ok(memoService.getMemoPageList(pageable, request));
     }
 
