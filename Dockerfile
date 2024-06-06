@@ -17,7 +17,7 @@ FROM openjdk:17.0.2-slim
 WORKDIR /app
 
 # 빌드 단계에서 생성된 JAR 파일을 복사
-COPY --from=build /app/build/libs/MeetOn_Memo-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/build/libs/MeetOn-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # ARG 선언
 ARG RDS_PASSWORD
@@ -25,6 +25,7 @@ ARG RDS_URL
 ARG RDS_USERNAME
 ARG KAFKA_SERVER_URL
 ARG SERVER_URL
+ARG JWT_SECRET_KEY
 
 # 환경 변수를 ENV로 설정
 ENV RDS_PASSWORD=${RDS_PASSWORD}
@@ -32,6 +33,7 @@ ENV RDS_URL=${RDS_URL}
 ENV RDS_USERNAME=${RDS_USERNAME}
 ENV KAFKA_SERVER_URL=${KAFKA_SERVER_URL}
 ENV SERVER_URL=${SERVER_URL}
+ENV JWT_SECRET_KEY=${JWT_SECRET_KEY}
 
 # JVM 플래그 및 애플리케이션 실행
 CMD ["java", "-Dspring.profiles.active=prod", "-jar", "/app/app.jar"]
