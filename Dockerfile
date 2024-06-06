@@ -17,7 +17,7 @@ FROM openjdk:17.0.2-slim
 WORKDIR /app
 
 # 빌드 단계에서 생성된 JAR 파일을 복사
-COPY --from=build /app/build/libs/MeetOn-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=build /app/build/libs/MeetOn_Memo-0.0.1-SNAPSHOT.jar /app/app.jar
 
 # ARG 선언
 ARG RDS_PASSWORD
